@@ -423,7 +423,7 @@ ANTHROPIC_MODEL=claude-sonnet-4-20250514
 
 ## 📝 Licença
 
-Projeto desenvolvido para o **Desafio Bolsista Doutor — PUCPR Digital**.  
+Projeto desenvolvido para o **Desafio Bolsista Doutor — CIELO**.  
 Uso acadêmico e de pesquisa.
 
 ---
