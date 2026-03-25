@@ -21,7 +21,7 @@ Este projeto implementa um **pipeline completo de Inteligência Artificial** par
 
 ---
 
-## Lindk extração dos dados
+## Link extração dos dados
 - https://developercielo.github.io/
 - https://www.visa.com/en-us/support/visa-rules
 
