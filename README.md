@@ -1,6 +1,6 @@
 # 🏦 Interchange AI — Pipeline de IA para Taxas de Intercâmbio
 
-> **Desafio: Bolsista Doutor | PUCPR Digital**  
+
 > Desenvolvimento de pipeline de IA para extração e estruturação automática das regras  
 > de taxas de intercâmbio dos manuais das Bandeiras (Visa e Mastercard).
 
