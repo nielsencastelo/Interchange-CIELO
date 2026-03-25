@@ -428,4 +428,4 @@ Uso acadêmico e de pesquisa.
 
 ---
 
-*Gerado em 2026 — Roberto Braga Jr. / NCDD*
+*Copyright © 2026 — Roberto Júnior / NCDD*
