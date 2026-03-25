@@ -1,31 +1,4 @@
-"""
-src/reports/generator.py
-========================
-Gerador de relatório técnico em HTML/PDF com análise exploratória completa.
-
-Gera um documento standalone com:
-    - Sumário executivo
-    - Análise exploratória por Bandeira
-    - Tabelas comparativas
-    - Análise regulatória BCB
-    - Pipeline proposto
-    - Recomendações técnicas para o agente de IA
-
-Uso:
-    python -m src.reports.generator
-    python -m src.reports.generator --output relatorio_custom.html
-"""
-from __future__ import annotations
-
-import argparse
-import sys
-from datetime import date
-from pathlib import Path
-
-# Garante path correto
-sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
-
-TEMPLATE_HTML = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -195,7 +168,7 @@ TEMPLATE_HTML = """<!DOCTYPE html>
   </div>
   <div class="meta">
     Relatório Técnico — Desafio Bolsista Doutor | PUCPR Digital<br>
-    Data de geração: {generated_date} | Versão: 2.0.0
+    Data de geração: 25/03/2026 | Versão: 2.0.0
   </div>
 </div>
 
@@ -215,7 +188,7 @@ habilitando análises comparativas, simulações de custo e suporte à decisão 
 </div>
 <div class="metrics">
   <div class="metric-card"><div class="metric-value">5</div><div class="metric-label">Bandeiras Cobertas</div></div>
-  <div class="metric-card"><div class="metric-value">{total_rules}</div><div class="metric-label">Regras Estruturadas</div></div>
+  <div class="metric-card"><div class="metric-value">206</div><div class="metric-label">Regras Estruturadas</div></div>
   <div class="metric-card"><div class="metric-value">11</div><div class="metric-label">Tipos de Regra</div></div>
   <div class="metric-card"><div class="metric-value">7</div><div class="metric-label">Módulos Python</div></div>
   <div class="metric-card"><div class="metric-value">2</div><div class="metric-label">APIs LLM Suportadas</div></div>
@@ -512,52 +485,10 @@ onde a precisão é crítica.
 </div>
 
 <footer>
-  Interchange AI v2.0 — Relatório Técnico gerado em {generated_date}<br>
+  Interchange AI v2.0 — Relatório Técnico gerado em 25/03/2026<br>
   Desafio Bolsista Doutor | PUCPR Digital<br>
   Dados de referência pública: Visa, Mastercard, AmericanExpress, Elo, Hipercard, BCB
 </footer>
 
 </body>
 </html>
-"""
-
-
-def generate_report(output_path: str = "relatorio_intercambio.html") -> None:
-    """
-    Gera o relatório técnico em HTML.
-
-    Args:
-        output_path: Caminho do arquivo de saída.
-    """
-    # Tenta obter total de regras do banco
-    try:
-        from src.database import init_db
-        from src.repository import count_rules
-        init_db()
-        total_rules = count_rules()
-    except Exception:
-        total_rules = "N/A"
-
-    generated_date = date.today().strftime("%d/%m/%Y")
-
-    html = (
-        TEMPLATE_HTML
-        .replace("{generated_date}", generated_date)
-        .replace("{total_rules}", str(total_rules))
-    )
-
-    out = Path(output_path)
-    out.write_text(html, encoding="utf-8")
-    print(f"✅ Relatório gerado: {out.resolve()}")
-    print(f"   Abra no navegador: file://{out.resolve()}")
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Gera relatório técnico de intercâmbio.")
-    parser.add_argument("--output", default="relatorio_intercambio.html")
-    args = parser.parse_args()
-    generate_report(args.output)
-
-
-if __name__ == "__main__":
-    main()
