@@ -1,0 +1,192 @@
+AMERICAN EXPRESS BRAZIL — TAXAS DE INTERCÂMBIO (REFERÊNCIA PÚBLICA)
+Vigência: 2024 | Região: Brasil | Moeda: BRL
+Fonte: Documentação pública American Express / Relatórios disponíveis ao mercado
+============================================================================
+
+SEÇÃO 1 — MODELO DE NEGÓCIOS AMERICAN EXPRESS (CLOSED LOOP)
+
+A American Express opera predominantemente como um sistema fechado (closed-loop),
+atuando simultaneamente como Bandeira, Emissor e, em alguns casos, Adquirente.
+No Brasil, opera em modelo híbrido via parceiros como Bradesco e Banco do Brasil.
+
+Taxas de desconto ao estabelecimento (MDR) Amex Brasil — referência pública:
+
+SEÇÃO 2 — TAXAS BASE CRÉDITO PESSOA FÍSICA
+
+Produto              | Taxa Base (%)
+---------------------|---------------
+Green                | 1,58%
+Gold                 | 1,72%
+Platinum             | 2,10%
+Centurion (Black)    | 2,45%
+Delta SkyMiles       | 1,85%
+
+SEÇÃO 3 — TAXAS BASE CRÉDITO PESSOA JURÍDICA
+
+Produto              | Taxa Base (%)
+---------------------|---------------
+Business Green       | 1,80%
+Business Gold        | 1,95%
+Corporate            | 2,08%
+Corporate Platinum   | 2,30%
+
+SEÇÃO 4 — AJUSTES POR SEGMENTO
+
+Segmento                            | Ajuste (%)
+------------------------------------|------------
+Supermercados                       | -0,30%
+Restaurantes e alimentação          | +0,10%
+Viagens, T&E (Travel & Entertainment)| +0,35%
+Saúde e farmácias                   | -0,15%
+Outros                              | 0,00%
+
+SEÇÃO 5 — PARCELAMENTO
+
+A Amex no Brasil opera parcelamento via portador (bill me later).
+As taxas abaixo se referem ao intercâmbio em transações parceladas:
+
+Parcelas | Ajuste (%)
+---------|------------
+2 a 6    | +0,45%
+7 a 12   | +1,10%
+
+SEÇÃO 6 — TRANSAÇÕES NÃO PRESENCIAIS (CNP)
+
+American Express SafeKey:
+  CNP autenticado: +0,30%
+  CNP não autenticado: +0,50%
+
+SEÇÃO 7 — SAQUE (CASH ADVANCE)
+
+Taxa fixa por saque doméstico: R$ 10,00
+Percentual adicional: 3% sobre o valor do saque (cobrado ao portador, não ao estabelecimento)
+
+============================================================================
+BANCO CENTRAL DO BRASIL — REGULAMENTAÇÃO DE INTERCÂMBIO
+Fontes: BCB, CMN, PAAR (Portal de Arranjos de Pagamento)
+============================================================================
+
+RESOLUÇÃO CMN Nº 4.282/2013 — ARRANJOS DE PAGAMENTO
+
+Art. 1º — Definições relevantes:
+  - Arranjo de pagamento: conjunto de regras e procedimentos que disciplina
+    a prestação de determinado serviço de pagamento ao público aceito por
+    mais de um recebedor, mediante acesso direto pelos usuários finais.
+  - Emissor: instituição que emite o instrumento de pagamento ao portador.
+  - Credenciador (Adquirente): instituição que habilita recebedores de pagamento.
+  - Taxa de intercâmbio: remuneração paga pelo adquirente ao emissor por
+    transação de pagamento processada.
+
+RESOLUÇÃO BCB Nº 35/2020 — TETOS DE INTERCÂMBIO
+
+Art. 3º — Limites máximos de taxas de intercâmbio domésticas:
+
+§ 1º — Transações com cartão de débito doméstico:
+  Limite máximo: 0,50% (cinquenta centésimos por cento) do valor da transação.
+  Para transações de baixo valor em segmentos específicos:
+  Teto absoluto: R$ 0,35 (trinta e cinco centavos) por transação.
+
+§ 2º — Transações com cartão pré-pago:
+  Limite máximo: 0,70% (setenta centésimos por cento) do valor da transação.
+
+§ 3º — Transações com cartão de crédito:
+  Não há teto regulatório. As taxas são definidas por negociação de mercado
+  entre Bandeiras, Emissores e Adquirentes, sujeitas às regras de concorrência.
+
+CIRCULAR BCB Nº 3.886/2018 — TRANSPARÊNCIA E DIVULGAÇÃO
+
+Obrigações de divulgação para participantes de arranjos de pagamento:
+  - Publicação anual das taxas de intercâmbio médias praticadas.
+  - Disponibilização no Portal de Arranjos de Pagamento do BCB (PAAR).
+  - URL pública: https://www.bcb.gov.br/estabilidadefinanceira/arranjos_pagamento
+
+PORTARIA BCB Nº 93.872/2021 — OPEN FINANCE E INTEROPERABILIDADE
+
+Determina que as instituições participantes do Open Finance devem:
+  - Disponibilizar dados de tarifas e taxas em APIs padronizadas.
+  - Incluir informações de intercâmbio nos relatórios Open Finance Fase 2.
+
+============================================================================
+ELO — ARRANJO DE PAGAMENTO DOMÉSTICO BRASILEIRO
+Fonte: Elo Serviços S.A. — documentação pública
+============================================================================
+
+A Elo é a única Bandeira 100% brasileira, criada pelo Banco do Brasil,
+Bradesco e Caixa Econômica Federal em 2011.
+
+TAXAS BASE CRÉDITO ELO — PESSOA FÍSICA
+
+Produto       | Taxa Base (%)
+--------------|---------------
+Classic       | 1,15%
+Mais          | 1,35%
+Grafite       | 1,62%
+Nanquim       | 1,78%
+
+TAXAS BASE DÉBITO ELO
+  Taxa padrão: 0,48%
+  Teto por transação: R$ 0,35 (segmentos emergentes)
+
+TAXAS PRÉ-PAGO ELO
+  Taxa base: 0,65%
+  CNP: sem ajuste diferenciado publicado
+
+AJUSTES ELO
+
+Segmento      | Ajuste (%)
+--------------|------------
+Supermercados | -0,20%
+Outros        | 0,00%
+
+Parcelamento ELO:
+  2 a 6x:  +0,55%
+  7 a 12x: +0,95%
+
+CNP ELO:     +0,30%
+Contactless: +0,03%
+
+Saque ATM ELO: R$ 7,00 por transação doméstica.
+
+============================================================================
+HIPERCARD — ARRANJO DOMÉSTICO BANCO ITAÚ
+============================================================================
+
+TAXAS BASE CRÉDITO HIPERCARD — PESSOA FÍSICA
+
+Produto          | Taxa Base (%)
+-----------------|---------------
+Hipercard        | 1,25%
+Hipercard Plus   | 1,45%
+
+TAXAS DÉBITO HIPERCARD
+  Taxa padrão: 0,42%
+
+PARCELAMENTO HIPERCARD:
+  2 a 6x:  +0,50%
+  7 a 12x: +0,85%
+
+CNP Hipercard:  +0,25%
+
+============================================================================
+CIELO — MANUAL DE INTERCÂMBIO E TAXAS (REFERÊNCIA PÚBLICA)
+Fonte: developercielo.github.io e relatórios anuais públicos Cielo
+============================================================================
+
+A Cielo é o maior credenciador (adquirente) do Brasil.
+Como adquirente, a Cielo repassa ao emissor a taxa de intercâmbio
+e cobra do estabelecimento a taxa de desconto (MDR).
+
+MDR = Intercâmbio + Taxa de Processamento Cielo + Spread
+
+Referência de MDR Cielo (2024) para estabelecimentos comuns:
+  Débito:       0,99% a 1,49% (inclui intercâmbio + processamento)
+  Crédito à vista: 1,99% a 2,49%
+  Crédito parcelado 2-6x: 2,49% a 3,49%
+  Crédito parcelado 7-12x: 3,49% a 4,99%
+
+Nota: O MDR cobrado pelo adquirente é maior que o intercâmbio
+pois inclui custos de processamento, risco e margem do adquirente.
+O intercâmbio é apenas a parcela repassada ao emissor do cartão.
+
+============================================================================
+FIM DOS DOCUMENTOS DE REFERÊNCIA

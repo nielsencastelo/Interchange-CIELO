@@ -1,0 +1,127 @@
+VISA BRAZIL INTERCHANGE REIMBURSEMENT FEES — TRECHO DE REFERÊNCIA PÚBLICA
+Vigência: 2024-Q1 | Região: Brasil | Moeda: BRL
+Fonte de referência: Documentação pública Visa Brasil / Cielo Manual de Intercâmbio
+============================================================================
+
+SEÇÃO 1 — TAXAS BASE: CRÉDITO PESSOA FÍSICA (PF)
+
+1.1 Tabela de Taxas Base — Cartão Presente (CP) — À Vista
+
+Produto         | Taxa Base (%)
+----------------|---------------
+Classic         | 1,17%
+Gold            | 1,34%
+Platinum        | 1,73%
+Signature       | 1,79%
+Infinite        | 1,83%
+
+Nota: As taxas acima se aplicam a transações de cartão presente (CP) à vista,
+sem parcelamento. Para transações parceladas, aplicam-se os ajustes da Seção 3.
+
+1.2 Ajustes por Segmento de Comércio — Crédito PF
+
+Os valores abaixo são SOMADOS à taxa base conforme segmento do estabelecimento:
+
+Segmento                                              | Ajuste (%)
+------------------------------------------------------|------------
+Supermercados (MCC 5411, 5412)                        | -0,27%
+Postos, Farmácias, Lojas de Departamento, Cias Aéreas | -0,08%
+Hotéis, Aluguel Carros, Turismo, Joalherias, Telemarketing | +0,26%
+Outros                                                | +0,13%
+
+Exemplo: Crédito Platinum em supermercado (CP, à vista):
+  Taxa final = 1,73% + (-0,27%) = 1,46%
+
+1.3 Ajuste de Captura
+
+Para todas as transações de crédito PF, aplica-se adicionalmente:
+  Ajuste de modalidade de captura: +0,15%
+
+SEÇÃO 2 — TAXAS BASE: CRÉDITO PESSOA JURÍDICA (PJ)
+
+Produto                          | Taxa Base (%)
+---------------------------------|---------------
+Empresarial                      | 1,91%
+Compras Empresarial Platinum     | 1,97%
+Corporativo e correlatos         | 2,08%
+
+SEÇÃO 3 — AJUSTES POR PARCELAMENTO
+
+3.1 Parcelado Padrão — Crédito PF (CP)
+
+Número de Parcelas | Ajuste adicional (%)
+-------------------|---------------------
+2 a 6              | +0,35%
+7 a 12             | +1,00%
+
+3.2 Parcelado Diferenciado — Classic em Supermercados
+
+Número de Parcelas | Ajuste adicional (%)
+-------------------|---------------------
+2 a 6              | +0,62%
+7 a 12             | +1,27%
+
+SEÇÃO 4 — TRANSAÇÕES NÃO PRESENCIAIS (CNP)
+
+4.1 Verified by Visa (VbV) — Autenticado ECI5
+
+Para transações de e-commerce autenticadas via Verified by Visa (ECI 5):
+  Ajuste adicional sobre a taxa base: +0,40%
+
+4.2 CNP Não Autenticado (ECI7)
+  Ajuste adicional: +0,55%
+
+SEÇÃO 5 — DÉBITO
+
+5.1 Taxa Base Débito Doméstico
+
+Segmento                  | Taxa (%) | Teto por transação
+--------------------------|----------|-----------------
+Supermercados             | 0,45%    | —
+Outros segmentos          | 0,50%    | —
+Segmento emergente Nível 3| 0,50%    | R$ 0,35
+
+5.2 Débito — Canal CNP
+  Ajuste: -0,05% sobre a taxa base
+
+SEÇÃO 6 — PRÉ-PAGO
+
+6.1 Pré-Pago PF e PJ (CP)
+  Taxa base: 0,70%
+
+6.2 Pré-Pago CNP
+  Ajuste: -0,40% (taxa efetiva = 0,30%)
+
+SEÇÃO 7 — SAQUE EM CAIXA ELETRÔNICO (ATM)
+
+7.1 Taxa Fixa por Transação de Saque
+
+Categoria         | Taxa Fixa (BRL)
+------------------|----------------
+ATM Tier I        | R$ 8,00
+ATM Tier II       | R$ 8,00
+
+Nota: Saque doméstico. Limitado a estabelecimentos credenciados Visa.
+Transações internacionais sujeitas a tabela separada.
+
+SEÇÃO 8 — TRANSAÇÕES CONTACTLESS
+
+Para transações Visa de cartão presente via tecnologia contactless (NFC/Tap to Pay):
+  Ajuste adicional: sem ajuste diferenciado (0,00%)
+  A taxa aplicável é a mesma do canal CP convencional.
+
+SEÇÃO 9 — OBSERVAÇÕES REGULATÓRIAS
+
+9.1 Banco Central do Brasil — Resolução BCB nº 35/2020
+  O Banco Central do Brasil estabeleceu teto de intercâmbio para transações de débito:
+  - Taxa máxima de intercâmbio doméstico de débito: 0,50% do valor da transação
+  - Para transações de baixo valor em segmentos específicos: teto de R$ 0,35
+  - Cartões pré-pagos: teto de 0,70% do valor da transação
+  
+9.2 Acordo de Aceitação
+  O intercâmbio é repassado pelo Adquirente ao Emissor.
+  As taxas acima são de referência pública; valores finais podem variar
+  por acordo bilateral entre Issuer e Acquirer.
+
+============================================================================
+FIM DO TRECHO — VISA BRAZIL INTERCHANGE REFERENCE (extrato público)

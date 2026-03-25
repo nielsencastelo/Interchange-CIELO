@@ -1,0 +1,131 @@
+MASTERCARD BRAZIL INTERCHANGE PROGRAM — TRECHO DE REFERÊNCIA PÚBLICA
+Vigência: 2024-Q1 | Região: Brasil | Moeda: BRL
+Fonte de referência: Documentação pública Mastercard Brasil / Relatório Anual de Intercâmbio
+============================================================================
+
+SEÇÃO 1 — TAXAS BASE: CRÉDITO CONSUMIDOR (PESSOA FÍSICA)
+
+1.1 Grupo Base — Cartão Presente Não Contactless (CP Non-Contactless)
+    Segmentos de referência: Supermercados, Despesas Gerais, Outros
+
+Produto          | Supermercados | Outros Segmentos
+-----------------|---------------|------------------
+Standard         | 1,10%         | 1,23%
+Gold             | 1,20%         | 1,34%
+Platinum         | 1,65%         | 1,73%
+Black            | 1,80%         | 1,83%
+World Legend     | 2,22%         | 2,32%
+
+Nota: Os valores acima são para transações à vista (avista), cartão presente,
+canal não contactless. Aplicam-se ajustes adicionais conforme seções abaixo.
+
+SEÇÃO 2 — AJUSTES DE CANAL E TECNOLOGIA
+
+2.1 Cartão Presente Contactless (CP Contactless)
+  Ajuste adicional sobre taxa base: +0,05%
+  
+  Exemplo: Black em supermercado, contactless:
+    1,80% + 0,05% = 1,85%
+
+2.2 On Digital / Produtos Especiais
+  Para produtos classificados como "On Digital" ou "Produto Especial":
+    Ajuste adicional: +0,20%
+
+2.3 Cartão Não Presente (CNP)
+
+  2.3.1 CNP — Mastercard ID Check (autenticado) — ECI2
+    Ajuste adicional: +0,15%
+
+  2.3.2 CNP — Outros (não autenticado) — ECI7
+    Ajuste adicional: +0,20%
+
+SEÇÃO 3 — AJUSTES POR PARCELAMENTO
+
+3.1 Parcelamento — Crédito Consumidor (CP)
+
+Número de parcelas | Ajuste adicional (%)
+-------------------|---------------------
+2 a 6              | +0,65%
+7 a 21             | +0,90%
+
+Observação importante: O Mastercard permite parcelamento até 21x no Brasil,
+diferenciando-se da Visa (máximo 12x no programa padrão).
+
+SEÇÃO 4 — CRÉDITO COMERCIAL / PESSOA JURÍDICA
+
+4.1 Taxas Base — Crédito Comercial (Cartão Presente, Supermercados, CP Non-Contactless)
+
+Produto                  | Taxa Base (%)
+-------------------------|---------------
+Commercial Business      | 1,65%
+Commercial Affluent      | 1,80%
+Commercial CTA           | 1,80%
+Commercial PCard         | 0,75%
+Commercial Agro          | 1,65%
+
+Nota: Commercial PCard possui taxa reduzida por natureza específica do produto.
+
+SEÇÃO 5 — DÉBITO
+
+5.1 Taxa Base Débito Doméstico — Cartão Presente
+
+Segmento                    | Taxa (%) | Teto
+----------------------------|----------|------
+Supermercados               | 0,50%    | —
+Despesas Gerais             | 0,45%    | —
+Outros                      | 0,25%    | R$ 0,30
+
+5.2 Débito CNP
+  Ajuste: -0,25% (redução para canal não presencial)
+
+5.3 Saque Doméstico em ATM — Taxa Fixa
+  Crédito: R$ 8,00 por transação
+  Débito: R$ 6,50 por transação
+
+SEÇÃO 6 — PRÉ-PAGO (CONSUMER PREPAID)
+
+6.1 Taxas Base Pré-Pago
+
+Segmento       | Taxa (%)
+---------------|----------
+Supermercados  | 0,70%
+Outros         | 0,30%
+
+6.2 Ajustes Pré-Pago por Canal
+
+Canal                    | Ajuste
+-------------------------|---------
+CP Contactless           | 0,00%  (sem ajuste diferenciado)
+CNP (não autenticado)    | -0,40%
+
+SEÇÃO 7 — REGULAMENTAÇÃO BCB E LIMITES
+
+7.1 Banco Central do Brasil — Resolução CMN nº 4.282/2013 e Resolução BCB nº 35/2020
+
+O Banco Central do Brasil, por meio de regulamentação dos Arranjos de Pagamento,
+estabelece os seguintes parâmetros para intercâmbio doméstico:
+
+Modalidade             | Limite Regulatório
+-----------------------|--------------------------------------------
+Débito doméstico       | Máximo 0,50% do valor da transação
+Débito baixo valor     | Teto absoluto de R$ 0,35 por transação
+Pré-pago doméstico     | Máximo 0,70% do valor da transação
+Crédito PF             | Sem teto regulatório (negociação de mercado)
+
+Referência: https://www.bcb.gov.br/estabilidadefinanceira/arranjos_pagamento
+
+7.2 Circular BCB 3.886/2018 — Transparência
+  Os Emissores e Credenciadores devem divulgar as taxas de intercâmbio
+  em seus relatórios anuais e no portal do Banco Central (PAAR).
+
+SEÇÃO 8 — OBSERVAÇÕES GERAIS
+
+- As taxas de intercâmbio são revisadas trimestralmente pela Mastercard Brasil.
+- Variações por região geográfica ou por acordo bilateral entre emissor e adquirente
+  podem resultar em taxas diferentes das indicadas neste documento de referência.
+- Para transações internacionais, aplica-se a tabela de Cross-Border Interchange.
+- O MCC (Merchant Category Code) do estabelecimento é determinante para
+  classificação no segmento correto e aplicação dos ajustes correspondentes.
+
+============================================================================
+FIM DO TRECHO — MASTERCARD BRAZIL INTERCHANGE REFERENCE (extrato público)

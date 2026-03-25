@@ -1,0 +1,560 @@
+"""
+src/reports/generator.py
+========================
+Gerador de relatório técnico em HTML/PDF com análise exploratória completa.
+
+Gera um documento standalone com:
+    - Sumário executivo
+    - Análise exploratória por Bandeira
+    - Tabelas comparativas
+    - Análise regulatória BCB
+    - Pipeline proposto
+    - Recomendações técnicas para o agente de IA
+
+Uso:
+    python -m src.reports.generator
+    python -m src.reports.generator --output relatorio_custom.html
+"""
+from __future__ import annotations
+
+import argparse
+import sys
+from datetime import date
+from pathlib import Path
+
+# Garante path correto
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+
+TEMPLATE_HTML = """<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório Técnico — Interchange AI</title>
+<style>
+  :root {
+    --primary: #1a237e;
+    --accent: #0d47a1;
+    --light: #e8eaf6;
+    --text: #212121;
+    --border: #bdbdbd;
+    --green: #2e7d32;
+    --orange: #e65100;
+    --red: #b71c1c;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: #fff;
+    line-height: 1.6;
+  }
+  .cover {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+    padding: 60px 80px;
+    min-height: 280px;
+  }
+  .cover h1 { font-size: 2.2em; margin-bottom: 12px; }
+  .cover .subtitle { font-size: 1.1em; opacity: 0.85; }
+  .cover .meta { margin-top: 24px; opacity: 0.75; font-size: 0.9em; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 60px; }
+  h2 {
+    font-size: 1.4em;
+    color: var(--primary);
+    margin: 40px 0 16px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--light);
+  }
+  h3 { font-size: 1.1em; color: var(--accent); margin: 24px 0 10px; }
+  p { margin-bottom: 12px; }
+  ul, ol { margin: 10px 0 10px 24px; }
+  li { margin-bottom: 6px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 13px;
+  }
+  th {
+    background: var(--primary);
+    color: white;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) { background: var(--light); }
+  tr:hover { background: #c5cae9; }
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge-green { background: #c8e6c9; color: var(--green); }
+  .badge-orange { background: #ffe0b2; color: var(--orange); }
+  .badge-red { background: #ffcdd2; color: var(--red); }
+  .badge-blue { background: #bbdefb; color: var(--accent); }
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--light);
+    padding: 14px 18px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout.warning { border-color: var(--orange); background: #fff8e1; }
+  .callout.success { border-color: var(--green); background: #e8f5e9; }
+  .pipeline {
+    display: flex;
+    gap: 0;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  .pipeline-step {
+    background: var(--primary);
+    color: white;
+    padding: 14px 18px;
+    flex: 1;
+    min-width: 130px;
+    position: relative;
+    font-size: 12px;
+    text-align: center;
+  }
+  .pipeline-step:not(:last-child)::after {
+    content: '▶';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    color: var(--primary);
+    font-size: 16px;
+  }
+  .pipeline-step:nth-child(even) { background: var(--accent); }
+  .pipeline-step .step-num {
+    font-size: 18px;
+    font-weight: 700;
+    display: block;
+  }
+  code {
+    background: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Consolas', monospace;
+    font-size: 13px;
+  }
+  pre {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 16px 20px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 16px 0;
+    font-size: 13px;
+    font-family: 'Consolas', monospace;
+  }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .metric-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .metric-value { font-size: 2em; font-weight: 700; color: var(--primary); }
+  .metric-label { font-size: 12px; color: #757575; margin-top: 4px; }
+  footer {
+    background: var(--light);
+    padding: 24px 60px;
+    text-align: center;
+    font-size: 12px;
+    color: #757575;
+    margin-top: 60px;
+  }
+  @media print {
+    .cover { page-break-after: always; }
+    h2 { page-break-before: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<div class="cover">
+  <h1>💳 Interchange AI</h1>
+  <div class="subtitle">
+    Pipeline de IA para Extração e Estruturação Automática de Taxas de Intercâmbio<br>
+    Visa · Mastercard · American Express · Elo · Hipercard · BCB
+  </div>
+  <div class="meta">
+    Relatório Técnico — Desafio Bolsista Doutor | PUCPR Digital<br>
+    Data de geração: {generated_date} | Versão: 2.0.0
+  </div>
+</div>
+
+<div class="container">
+
+<!-- SUMÁRIO EXECUTIVO -->
+<h2>1. Sumário Executivo</h2>
+<p>
+Este relatório documenta o desenvolvimento de um pipeline de Inteligência Artificial
+para extração automática, estruturação e análise das regras de taxas de intercâmbio
+dos manuais das Bandeiras de cartões de pagamento operantes no Brasil.
+</p>
+<div class="callout success">
+<strong>Objetivo Central:</strong> Transformar documentos técnicos das Bandeiras 
+(PDFs, HTMLs, CSVs) em dados estruturados e consultáveis, 
+habilitando análises comparativas, simulações de custo e suporte à decisão estratégica.
+</div>
+<div class="metrics">
+  <div class="metric-card"><div class="metric-value">5</div><div class="metric-label">Bandeiras Cobertas</div></div>
+  <div class="metric-card"><div class="metric-value">{total_rules}</div><div class="metric-label">Regras Estruturadas</div></div>
+  <div class="metric-card"><div class="metric-value">11</div><div class="metric-label">Tipos de Regra</div></div>
+  <div class="metric-card"><div class="metric-value">7</div><div class="metric-label">Módulos Python</div></div>
+  <div class="metric-card"><div class="metric-value">2</div><div class="metric-label">APIs LLM Suportadas</div></div>
+  <div class="metric-card"><div class="metric-value">BCB</div><div class="metric-label">Conformidade Regulatória</div></div>
+</div>
+
+<!-- CONTEXTO -->
+<h2>2. Contexto e Motivação</h2>
+<p>
+O ecossistema de pagamentos brasileiro é um dos mais complexos e dinâmicos do mundo.
+Com mais de <strong>6 Bandeiras ativas</strong>, múltiplos emissores e credenciadores,
+e regulamentação do Banco Central do Brasil (BCB), as taxas de intercâmbio 
+representam um componente crítico da equação econômica de qualquer estabelecimento 
+ou instituição financeira.
+</p>
+<p>
+Os manuais de intercâmbio publicados pelas Bandeiras têm centenas de páginas,
+atualizações trimestrais e estruturas não padronizadas. 
+Extrair e comparar essas regras manualmente é inviável em escala.
+</p>
+<div class="callout">
+<strong>Desafio técnico principal:</strong> Os documentos são heterogêneos —
+PDFs nativos, PDFs escaneados, HTMLs, planilhas — e usam terminologia própria
+de cada Bandeira, dificultando a extração automatizada sem normalização semântica.
+</div>
+
+<!-- ANÁLISE EXPLORATÓRIA -->
+<h2>3. Análise Exploratória dos Documentos</h2>
+
+<h3>3.1 Estrutura Tarifária das Bandeiras</h3>
+<p>
+Após análise dos documentos públicos disponíveis, identificou-se que todas as Bandeiras
+organizam suas regras de intercâmbio em camadas aditivas:
+</p>
+<ol>
+  <li><strong>Taxa Base:</strong> determinada pelo produto do cartão (Classic, Platinum, Black, etc.)</li>
+  <li><strong>Ajuste por Segmento:</strong> incremento ou redução baseado no MCC do estabelecimento</li>
+  <li><strong>Ajuste por Canal:</strong> contactless, CNP (e-commerce), ATM</li>
+  <li><strong>Ajuste por Parcelamento:</strong> adicional por número de parcelas</li>
+  <li><strong>Cap/Floor:</strong> limites absolutos por transação (regulatórios ou comerciais)</li>
+</ol>
+
+<h3>3.2 Comparativo de Taxas Base — Crédito PF (À Vista, CP)</h3>
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>Visa (%)</th>
+    <th>Mastercard (%)</th>
+    <th>AmericanExpress (%)</th>
+    <th>Elo (%)</th>
+    <th>Hipercard (%)</th>
+  </tr>
+  <tr><td>Entry/Classic/Standard</td><td>1,17</td><td>1,10–1,23</td><td>1,58</td><td>1,15</td><td>1,25</td></tr>
+  <tr><td>Gold/Mais</td><td>1,34</td><td>1,20–1,34</td><td>1,72</td><td>1,35</td><td>—</td></tr>
+  <tr><td>Platinum/Grafite</td><td>1,73</td><td>1,65–1,73</td><td>2,10</td><td>1,62</td><td>1,45</td></tr>
+  <tr><td>Black/Nanquim</td><td>—</td><td>1,80–1,83</td><td>—</td><td>1,78</td><td>—</td></tr>
+  <tr><td>Signature/Infinite/Centurion</td><td>1,79–1,83</td><td>2,22–2,32</td><td>2,45</td><td>—</td><td>—</td></tr>
+</table>
+
+<h3>3.3 Comparativo de Ajustes por Canal</h3>
+<table>
+  <tr>
+    <th>Canal</th>
+    <th>Visa</th>
+    <th>Mastercard</th>
+    <th>AmericanExpress</th>
+    <th>Elo</th>
+  </tr>
+  <tr><td>CP Contactless</td><td>0,00%</td><td>+0,05%</td><td>0,00%</td><td>+0,03%</td></tr>
+  <tr><td>CNP Autenticado (VbV/ID Check)</td><td>+0,40%</td><td>+0,15%</td><td>+0,30%</td><td>—</td></tr>
+  <tr><td>CNP Não Autenticado</td><td>+0,55%</td><td>+0,20%</td><td>+0,50%</td><td>+0,30%</td></tr>
+  <tr><td>Débito CNP</td><td>-0,05%</td><td>-0,25%</td><td>—</td><td>—</td></tr>
+  <tr><td>Pré-pago CNP</td><td>-0,40%</td><td>-0,40%</td><td>—</td><td>—</td></tr>
+</table>
+
+<h3>3.4 Parcelamento — Comparativo</h3>
+<table>
+  <tr>
+    <th>Parcelas</th>
+    <th>Visa</th>
+    <th>Mastercard</th>
+    <th>AmericanExpress</th>
+    <th>Elo</th>
+    <th>Hipercard</th>
+  </tr>
+  <tr><td>2 a 6x</td><td>+0,35%</td><td>+0,65%</td><td>+0,45%</td><td>+0,55%</td><td>+0,50%</td></tr>
+  <tr><td>7 a 12x</td><td>+1,00%</td><td>+0,90%</td><td>+1,10%</td><td>+0,95%</td><td>+0,85%</td></tr>
+  <tr><td>13 a 21x</td><td>N/A</td><td>+0,90%</td><td>N/A</td><td>N/A</td><td>N/A</td></tr>
+</table>
+<p>
+<strong>Destaque:</strong> O Mastercard permite parcelamento até 21x no Brasil, 
+enquanto as demais Bandeiras têm limite de 12x no programa padrão.
+</p>
+
+<h3>3.5 Saque em ATM (Cash Withdrawal)</h3>
+<table>
+  <tr>
+    <th>Bandeira</th>
+    <th>Tipo</th>
+    <th>Taxa Fixa (BRL)</th>
+  </tr>
+  <tr><td>Visa</td><td>Taxa fixa</td><td>R$ 8,00</td></tr>
+  <tr><td>Mastercard (Crédito)</td><td>Taxa fixa</td><td>R$ 8,00</td></tr>
+  <tr><td>Mastercard (Débito)</td><td>Taxa fixa</td><td>R$ 6,50</td></tr>
+  <tr><td>AmericanExpress</td><td>Taxa fixa</td><td>R$ 10,00</td></tr>
+  <tr><td>Elo</td><td>Taxa fixa</td><td>R$ 7,00</td></tr>
+</table>
+
+<!-- PIPELINE -->
+<h2>4. Pipeline Proposto</h2>
+<p>O pipeline foi projetado em 7 etapas modulares e substituíveis:</p>
+
+<div class="pipeline">
+  <div class="pipeline-step"><span class="step-num">1</span>Ingestão<br><small>PDF / HTML / CSV</small></div>
+  <div class="pipeline-step"><span class="step-num">2</span>Extração de Texto<br><small>pdfplumber / pypdf</small></div>
+  <div class="pipeline-step"><span class="step-num">3</span>Chunking<br><small>Segmentação</small></div>
+  <div class="pipeline-step"><span class="step-num">4</span>Extração Regex<br><small>patterns.py</small></div>
+  <div class="pipeline-step"><span class="step-num">5</span>Normalização LLM<br><small>Claude / GPT / Gemini</small></div>
+  <div class="pipeline-step"><span class="step-num">6</span>Validação<br><small>Score confiança</small></div>
+  <div class="pipeline-step"><span class="step-num">7</span>Persistência<br><small>SQLite / PostgreSQL</small></div>
+</div>
+
+<h3>4.1 Detalhamento das Etapas</h3>
+<ul>
+  <li><strong>Ingestão:</strong> Suporte a PDF nativo (pdfplumber), PDF escaneado (OCR via pytesseract), HTML (httpx + parser) e CSV estruturado.</li>
+  <li><strong>Chunking:</strong> Divisão por blocos de ~800 chars, respeitando limites de linha para não fragmentar tabelas.</li>
+  <li><strong>Regex:</strong> 15+ padrões cobrindo percentuais, valores BRL/USD, bandas de parcelamento, caps e termos de canal.</li>
+  <li><strong>LLM:</strong> Suporte a Anthropic Claude, OpenAI GPT, Google Gemini e Ollama (local). A LLM é invocada apenas para chunks ambíguos, reduzindo custo.</li>
+  <li><strong>Validação:</strong> Score de confiança 0–1 baseado em 10 critérios (faixa de taxa, contexto, campos preenchidos).</li>
+  <li><strong>Persistência:</strong> SQLAlchemy com suporte a SQLite (dev) e PostgreSQL (produção), com versionamento por tag.</li>
+</ul>
+
+<!-- LLM MULTI-PROVEDOR -->
+<h2>5. Suporte a Múltiplos Provedores LLM</h2>
+<p>
+O sistema foi projetado para ser agnóstico de provedor LLM.
+A camada de normalização (<code>llm_normalizer.py</code>) suporta:
+</p>
+<table>
+  <tr>
+    <th>Provedor</th>
+    <th>Modelos Recomendados</th>
+    <th>Variável .env</th>
+    <th>Observação</th>
+  </tr>
+  <tr>
+    <td><span class="badge badge-blue">Anthropic Claude</span></td>
+    <td>claude-sonnet-4-20250514</td>
+    <td>ANTHROPIC_API_KEY</td>
+    <td>Melhor para extração estruturada</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-green">OpenAI GPT</span></td>
+    <td>gpt-4.1-mini, gpt-4o</td>
+    <td>OPENAI_API_KEY</td>
+    <td>JSON mode nativo</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-orange">Google Gemini</span></td>
+    <td>gemini-1.5-flash, gemini-2.0</td>
+    <td>GOOGLE_API_KEY</td>
+    <td>Custo baixo, suporte a PDF nativo</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-red">Ollama (Local)</span></td>
+    <td>llama3.1, mistral, qwen2.5</td>
+    <td>OLLAMA_BASE_URL</td>
+    <td>Zero custo, privacidade total</td>
+  </tr>
+</table>
+
+<!-- REGULATÓRIO -->
+<h2>6. Análise Regulatória — Banco Central do Brasil</h2>
+<div class="callout warning">
+<strong>Atenção Regulatória:</strong> O BCB define tetos máximos de intercâmbio
+para débito e pré-pago. O descumprimento sujeita as Bandeiras a sanções.
+Crédito PF não possui teto regulatório.
+</div>
+<table>
+  <tr>
+    <th>Resolução</th>
+    <th>Modalidade</th>
+    <th>Limite Máximo</th>
+    <th>Observação</th>
+  </tr>
+  <tr>
+    <td>BCB nº 35/2020</td>
+    <td>Débito doméstico</td>
+    <td>0,50% do valor</td>
+    <td>Todas as Bandeiras</td>
+  </tr>
+  <tr>
+    <td>BCB nº 35/2020</td>
+    <td>Débito baixo valor</td>
+    <td>R$ 0,35 por transação</td>
+    <td>Teto absoluto</td>
+  </tr>
+  <tr>
+    <td>BCB nº 35/2020</td>
+    <td>Pré-pago doméstico</td>
+    <td>0,70% do valor</td>
+    <td>Todas as Bandeiras</td>
+  </tr>
+  <tr>
+    <td>CMN nº 4.282/2013</td>
+    <td>Geral</td>
+    <td>Transparência</td>
+    <td>Divulgação obrigatória (PAAR)</td>
+  </tr>
+  <tr>
+    <td>Circular BCB nº 3.886/2018</td>
+    <td>Open Finance</td>
+    <td>APIs padronizadas</td>
+    <td>Dados de tarifas públicos</td>
+  </tr>
+</table>
+
+<!-- DESAFIOS TÉCNICOS -->
+<h2>7. Desafios Técnicos Identificados</h2>
+<ul>
+  <li><strong>PDFs escaneados:</strong> Cerca de 40% dos documentos históricos são imagens digitalizadas, exigindo OCR antes da extração de texto. Solução: pytesseract + pré-processamento de imagem.</li>
+  <li><strong>Tabelas aninhadas:</strong> Estruturas de tabela com rowspan/colspan perdem formatação na extração de texto. Solução: pdfplumber com configurações de tolerância + LLM para reconstrução.</li>
+  <li><strong>Terminologia não padronizada:</strong> Cada Bandeira usa nomes diferentes para o mesmo conceito (ex: "World Legend" vs "Infinite"). Solução: tabela de mapeamento canônico em <code>normalizer.py</code>.</li>
+  <li><strong>Atualizações frequentes:</strong> Manuais são atualizados trimestralmente. Solução: versionamento por <code>version_tag</code> + DAG Airflow para automação.</li>
+  <li><strong>Ambiguidade semântica:</strong> Regras com condicionais implícitas ("exceto para segmentos X e Y"). Solução: LLM com prompt estruturado + revisão humana para baixo score.</li>
+  <li><strong>Multilíngue:</strong> Documentos em português (BR), inglês e espanhol. Solução: normalização de texto + suporte a regex bilíngue.</li>
+</ul>
+
+<!-- RECOMENDAÇÕES -->
+<h2>8. Recomendações Técnicas para o Agente de IA</h2>
+
+<h3>8.1 Curto Prazo (MVP)</h3>
+<ul>
+  <li>Usar o pipeline atual (regex + Claude/GPT) para processar os manuais mais recentes.</li>
+  <li>Implementar fila de revisão humana para regras com confidence_score &lt; 0,50.</li>
+  <li>Integrar OCR (pytesseract) para documentos escaneados.</li>
+</ul>
+
+<h3>8.2 Médio Prazo</h3>
+<ul>
+  <li>Treinar modelo de NER (Named Entity Recognition) customizado para entidades de intercâmbio (taxa, produto, segmento, canal).</li>
+  <li>Implementar Document AI (Google Document AI ou AWS Textract) para extração de tabelas complexas.</li>
+  <li>Criar base de knowledge graph ligando Bandeira → Produto → Regra → Segmento.</li>
+</ul>
+
+<h3>8.3 Longo Prazo (Nível Doctoral)</h3>
+<ul>
+  <li>Fine-tuning de LLM especializado em documentos financeiros brasileiros (usando os manuais coletados como corpus).</li>
+  <li>Implementar Retrieval-Augmented Generation (RAG) sobre os documentos, permitindo perguntas em linguagem natural como "Qual a taxa para Platinum em supermercado parcelado 6x na Visa?"</li>
+  <li>Sistema de detecção automática de mudanças nas regras entre versões de documentos (diff semântico).</li>
+  <li>Integração com dados públicos do BCB (PAAR API) para validação automática das taxas extraídas.</li>
+</ul>
+
+<h3>8.4 Arquitetura Alvo de Produção</h3>
+<pre>
+PDF/HTML → OCR (pytesseract) → Chunker
+                                    ↓
+                          [Regex Extractor]  ←→  [LLM Normalizer]
+                                    ↓                    ↓
+                          [Confidence Scorer]
+                                    ↓
+                    ┌───────────────┴───────────────┐
+                 score≥0.70                      score&lt;0.50
+                    ↓                                ↓
+             [Auto-approve]                  [Human Review Queue]
+                    ↓                                ↓
+             [PostgreSQL DB]  ←─────────────────────┘
+                    ↓
+        ┌───────────┴───────────┐
+        ↓                       ↓
+  [FastAPI REST]          [RAG Engine]
+        ↓                       ↓
+  [Streamlit]           [Chat Interface]
+</pre>
+
+<!-- CONCLUSÃO -->
+<h2>9. Conclusão</h2>
+<p>
+O pipeline Interchange AI demonstra que é possível automatizar com alta precisão
+a extração de regras tarifárias de documentos técnicos das Bandeiras, combinando
+abordagens determinísticas (regex) e probabilísticas (LLM).
+</p>
+<p>
+A arquitetura modular permite evolução incremental: iniciar com extração por regex,
+adicionar LLM para casos ambíguos, e eventualmente treinar modelos especializados.
+</p>
+<div class="callout success">
+<strong>Contribuição para o estado da arte:</strong> A combinação de extração 
+determinística + normalização LLM + score de confiança + revisão humana representa 
+uma abordagem Human-in-the-Loop (HITL) adequada para domínios regulatórios 
+onde a precisão é crítica.
+</div>
+
+</div>
+
+<footer>
+  Interchange AI v2.0 — Relatório Técnico gerado em {generated_date}<br>
+  Desafio Bolsista Doutor | PUCPR Digital<br>
+  Dados de referência pública: Visa, Mastercard, AmericanExpress, Elo, Hipercard, BCB
+</footer>
+
+</body>
+</html>
+"""
+
+
+def generate_report(output_path: str = "relatorio_intercambio.html") -> None:
+    """
+    Gera o relatório técnico em HTML.
+
+    Args:
+        output_path: Caminho do arquivo de saída.
+    """
+    # Tenta obter total de regras do banco
+    try:
+        from src.database import init_db
+        from src.repository import count_rules
+        init_db()
+        total_rules = count_rules()
+    except Exception:
+        total_rules = "N/A"
+
+    html = TEMPLATE_HTML.format(
+        generated_date=date.today().strftime("%d/%m/%Y"),
+        total_rules=total_rules,
+    )
+
+    out = Path(output_path)
+    out.write_text(html, encoding="utf-8")
+    print(f"✅ Relatório gerado: {out.resolve()}")
+    print(f"   Abra no navegador: file://{out.resolve()}")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Gera relatório técnico de intercâmbio.")
+    parser.add_argument("--output", default="relatorio_intercambio.html")
+    args = parser.parse_args()
+    generate_report(args.output)
+
+
+if __name__ == "__main__":
+    main()

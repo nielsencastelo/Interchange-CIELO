@@ -1,0 +1,141 @@
+network,region,rule_type,audience,card_family,product,merchant_group,rate_pct,fixed_fee_brl,cap_brl,installment_band,channel,notes
+Visa,BR,base_rate,PF,credit,Classic,base,1.17,,,avista,cp,Base PF crédito Classic
+Visa,BR,base_rate,PF,credit,Gold,base,1.34,,,avista,cp,Base PF crédito Gold
+Visa,BR,base_rate,PF,credit,Platinum,base,1.73,,,avista,cp,Base PF crédito Platinum
+Visa,BR,base_rate,PF,credit,Signature,base,1.79,,,avista,cp,Base PF crédito Signature
+Visa,BR,base_rate,PF,credit,Infinite,base,1.83,,,avista,cp,Base PF crédito Infinite
+Visa,BR,merchant_adjustment,PF,credit,all,supermercados,-0.27,,,all,cp,Ajuste segmento supermercados
+Visa,BR,merchant_adjustment,PF,credit,all,postos_farmacias_departamento_aereas,-0.08,,,all,cp,Ajuste postos/farmácias/aéreas
+Visa,BR,merchant_adjustment,PF,credit,all,hoteis_aluguel_carros_turismo_joalherias_telemarketing,0.26,,,all,cp,Ajuste V&E
+Visa,BR,merchant_adjustment,PF,credit,all,outros,0.13,,,all,cp,Ajuste outros segmentos
+Visa,BR,capture_adjustment,PF,credit,all,all,0.15,,,all,cp,Ajuste modalidade captura
+Visa,BR,installment_adjustment,PF,credit,all,default,0.35,,,2-6,cp,Parcelado 2-6x padrão
+Visa,BR,installment_adjustment,PF,credit,all,default,1.0,,,7-12,cp,Parcelado 7-12x padrão
+Visa,BR,installment_adjustment,PF,credit,Classic,supermercados,0.62,,,2-6,cp,Parcelado Classic supermercado
+Visa,BR,installment_adjustment,PF,credit,Classic,supermercados,1.27,,,7-12,cp,Parcelado Classic supermercado
+Visa,BR,cnp_authenticated_adjustment,PF,credit,all,all,0.4,,,all,cnp,VbV autenticado ECI5
+Visa,BR,cnp_adjustment,PF,credit,all,all,0.55,,,all,cnp,CNP não autenticado ECI7
+Visa,BR,contactless_adjustment,PF,credit,all,all,0.0,,,all,cp_contactless,Cartão presente contactless (sem ajuste Visa)
+Visa,BR,base_rate,PJ,credit,Empresarial,base,1.91,,,avista,cp,Base PJ crédito Empresarial
+Visa,BR,base_rate,PJ,credit,Compras_Empresarial_Platinum,base,1.97,,,avista,cp,Base PJ crédito Compras
+Visa,BR,base_rate,PJ,credit,Corporativo_e_correlatos,base,2.08,,,avista,cp,Base PJ crédito Corporativo
+Visa,BR,base_rate,ALL,debit,Débito,outros,0.5,,,avista,cp,Débito doméstico padrão
+Visa,BR,base_rate,ALL,debit,Débito,supermercados,0.45,,,avista,cp,Débito supermercados
+Visa,BR,cap,ALL,debit,Débito,segmento_emergente_3,0.5,,0.35,avista,cp,Débito com teto por transação
+Visa,BR,cnp_adjustment,ALL,debit,all,all,-0.05,,,all,cnp,Débito CNP ajuste
+Visa,BR,base_rate,ALL,prepaid,PrePago_PF,all,0.7,,,avista,cp,Pré-pago PF
+Visa,BR,base_rate,ALL,prepaid,PrePago_PJ,all,0.7,,,avista,cp,Pré-pago PJ
+Visa,BR,cnp_adjustment,ALL,prepaid,all,all,-0.4,,,all,cnp,Pré-pago CNP
+Visa,BR,fixed_fee,ALL,cash_withdrawal,ATM_Tier_I,atm,,8.0,,na,atm,Saque doméstico Tier I
+Visa,BR,fixed_fee,ALL,cash_withdrawal,ATM_Tier_II,atm,,8.0,,na,atm,Saque doméstico Tier II
+Mastercard,BR,base_rate,PF,credit,Standard,supermercados,1.1,,,avista,cp_non_contactless,Consumidor Standard supermercados
+Mastercard,BR,base_rate,PF,credit,Gold,supermercados,1.2,,,avista,cp_non_contactless,Consumidor Gold supermercados
+Mastercard,BR,base_rate,PF,credit,Platinum,supermercados,1.65,,,avista,cp_non_contactless,Consumidor Platinum supermercados
+Mastercard,BR,base_rate,PF,credit,Black,supermercados,1.8,,,avista,cp_non_contactless,Consumidor Black supermercados
+Mastercard,BR,base_rate,PF,credit,World_Legend,supermercados,2.22,,,avista,cp_non_contactless,Consumidor World Legend supermercados
+Mastercard,BR,base_rate,PF,credit,Standard,outros,1.23,,,avista,cp_non_contactless,Consumidor Standard outros
+Mastercard,BR,base_rate,PF,credit,Gold,outros,1.34,,,avista,cp_non_contactless,Consumidor Gold outros
+Mastercard,BR,base_rate,PF,credit,Platinum,outros,1.73,,,avista,cp_non_contactless,Consumidor Platinum outros
+Mastercard,BR,base_rate,PF,credit,Black,outros,1.83,,,avista,cp_non_contactless,Consumidor Black outros
+Mastercard,BR,base_rate,PF,credit,World_Legend,outros,2.32,,,avista,cp_non_contactless,Consumidor World Legend outros
+Mastercard,BR,special_product_adjustment,PF,credit,all,all,0.2,,,all,all,Produtos especiais On Digital
+Mastercard,BR,contactless_adjustment,PF,credit,all,all,0.05,,,all,cp_contactless,Cartão presente contactless
+Mastercard,BR,cnp_adjustment,PF,credit,all,default,0.2,,,all,cnp,CNP outros ECI7
+Mastercard,BR,cnp_authenticated_adjustment,PF,credit,all,default,0.15,,,all,cnp,CNP autenticado ECI2
+Mastercard,BR,installment_adjustment,PF,credit,all,default,0.65,,,2-6,cp,Parcelas 2-6x consumidor crédito
+Mastercard,BR,installment_adjustment,PF,credit,all,default,0.9,,,7-21,cp,Parcelas 7-21x consumidor crédito
+Mastercard,BR,base_rate,PJ,credit,Commercial_Business,supermercados,1.65,,,avista,cp_non_contactless,Comercial Business supermercados
+Mastercard,BR,base_rate,PJ,credit,Commercial_Affluent,supermercados,1.8,,,avista,cp_non_contactless,Comercial Affluent supermercados
+Mastercard,BR,base_rate,PJ,credit,Commercial_CTA,supermercados,1.8,,,avista,cp_non_contactless,Comercial CTA supermercados
+Mastercard,BR,base_rate,PJ,credit,Commercial_PCard,supermercados,0.75,,,avista,cp_non_contactless,Comercial PCard supermercados
+Mastercard,BR,base_rate,PJ,credit,Commercial_Agro,supermercados,1.65,,,avista,cp_non_contactless,Comercial Agro supermercados
+Mastercard,BR,base_rate,ALL,prepaid,Consumer_Prepaid,supermercados,0.7,,,avista,cp_non_contactless,Pré-pago supermercados
+Mastercard,BR,base_rate,ALL,prepaid,Consumer_Prepaid,outros,0.3,,,avista,cp_non_contactless,Pré-pago outros
+Mastercard,BR,contactless_adjustment,ALL,prepaid,all,all,0.0,,,all,cp_contactless,Pré-pago contactless sem ajuste
+Mastercard,BR,cnp_adjustment,ALL,prepaid,all,default,-0.4,,,all,cnp,Pré-pago CNP ajuste negativo
+Mastercard,BR,base_rate,ALL,debit,Debit,supermercados,0.5,,,avista,cp,Débito supermercados
+Mastercard,BR,base_rate,ALL,debit,Debit,despesas_gerais,0.45,,,avista,cp,Débito despesas gerais
+Mastercard,BR,base_rate,ALL,debit,Debit,outros,0.25,,0.3,avista,cp,Débito outros com teto
+Mastercard,BR,cnp_adjustment,ALL,debit,all,default,-0.25,,,all,cnp,Débito CNP ajuste negativo
+Mastercard,BR,fixed_fee,ALL,cash_withdrawal,Debit,atm,,6.5,,na,atm,Saque doméstico débito
+Mastercard,BR,fixed_fee,ALL,cash_withdrawal,Credit,atm,,8.0,,na,atm,Saque doméstico crédito
+AmericanExpress,BR,base_rate,PF,credit,Green,base,1.58,,,avista,cp,Amex Green base PF
+AmericanExpress,BR,base_rate,PF,credit,Gold,base,1.72,,,avista,cp,Amex Gold base PF
+AmericanExpress,BR,base_rate,PF,credit,Platinum,base,2.10,,,avista,cp,Amex Platinum base PF
+AmericanExpress,BR,base_rate,PF,credit,Centurion,base,2.45,,,avista,cp,Amex Centurion Black base PF
+AmericanExpress,BR,base_rate,PJ,credit,Business_Green,base,1.80,,,avista,cp,Amex Business Green base PJ
+AmericanExpress,BR,base_rate,PJ,credit,Business_Gold,base,1.95,,,avista,cp,Amex Business Gold base PJ
+AmericanExpress,BR,base_rate,PJ,credit,Corporate,base,2.08,,,avista,cp,Amex Corporate base PJ
+AmericanExpress,BR,merchant_adjustment,PF,credit,all,supermercados,-0.30,,,all,cp,Amex ajuste supermercados
+AmericanExpress,BR,merchant_adjustment,PF,credit,all,restaurantes,0.10,,,all,cp,Amex ajuste restaurantes
+AmericanExpress,BR,merchant_adjustment,PF,credit,all,viagens,0.35,,,all,cp,Amex ajuste viagens/T&E
+AmericanExpress,BR,installment_adjustment,PF,credit,all,default,0.45,,,2-6,cp,Amex parcelado 2-6x
+AmericanExpress,BR,installment_adjustment,PF,credit,all,default,1.10,,,7-12,cp,Amex parcelado 7-12x
+AmericanExpress,BR,cnp_adjustment,PF,credit,all,all,0.50,,,all,cnp,Amex SafeKey CNP
+AmericanExpress,BR,contactless_adjustment,PF,credit,all,all,0.0,,,all,cp_contactless,Amex contactless
+AmericanExpress,BR,fixed_fee,ALL,cash_withdrawal,all,atm,,10.0,,na,atm,Amex saque doméstico
+Elo,BR,base_rate,PF,credit,Nanquim,base,1.78,,,avista,cp,Elo Nanquim base PF
+Elo,BR,base_rate,PF,credit,Grafite,base,1.62,,,avista,cp,Elo Grafite base PF
+Elo,BR,base_rate,PF,credit,Mais,base,1.35,,,avista,cp,Elo Mais base PF
+Elo,BR,base_rate,PF,credit,Classic,base,1.15,,,avista,cp,Elo Classic base PF
+Elo,BR,base_rate,ALL,debit,Debit,base,0.48,,,avista,cp,Elo Débito base
+Elo,BR,base_rate,ALL,prepaid,Prepaid,base,0.65,,,avista,cp,Elo Pré-pago base
+Elo,BR,installment_adjustment,PF,credit,all,default,0.55,,,2-6,cp,Elo parcelado 2-6x
+Elo,BR,installment_adjustment,PF,credit,all,default,0.95,,,7-12,cp,Elo parcelado 7-12x
+Elo,BR,cnp_adjustment,PF,credit,all,all,0.30,,,all,cnp,Elo CNP
+Elo,BR,contactless_adjustment,PF,credit,all,all,0.03,,,all,cp_contactless,Elo contactless
+Elo,BR,merchant_adjustment,PF,credit,all,supermercados,-0.20,,,all,cp,Elo ajuste supermercados
+Elo,BR,fixed_fee,ALL,cash_withdrawal,all,atm,,7.0,,na,atm,Elo saque doméstico
+Hipercard,BR,base_rate,PF,credit,Hipercard,base,1.25,,,avista,cp,Hipercard base PF
+Hipercard,BR,base_rate,PF,credit,Hipercard_Plus,base,1.45,,,avista,cp,Hipercard Plus base PF
+Hipercard,BR,base_rate,ALL,debit,Debit,base,0.42,,,avista,cp,Hipercard Débito
+Hipercard,BR,installment_adjustment,PF,credit,all,default,0.50,,,2-6,cp,Hipercard parcelado 2-6x
+Hipercard,BR,installment_adjustment,PF,credit,all,default,0.85,,,7-12,cp,Hipercard parcelado 7-12x
+Hipercard,BR,cnp_adjustment,PF,credit,all,all,0.25,,,all,cnp,Hipercard CNP
+BCB_Limite,BR,regulatory_cap,ALL,debit,all,all,0.5,,0.35,avista,all,Teto BCB Resolução 35/2020 débito
+BCB_Limite,BR,regulatory_cap,ALL,prepaid,all,all,0.7,,,avista,all,Teto BCB pré-pago
+BCB_Limite,BR,regulatory_cap,PF,credit,all,all,,,,,all,Sem teto regulatório crédito PF (mercado)
+AmericanExpress,BR,base_rate,PF,credit,Green,base,1.58,,,avista,cp,Amex Green crédito PF
+AmericanExpress,BR,base_rate,PF,credit,Gold,base,1.72,,,avista,cp,Amex Gold crédito PF
+AmericanExpress,BR,base_rate,PF,credit,Platinum,base,2.10,,,avista,cp,Amex Platinum crédito PF
+AmericanExpress,BR,base_rate,PF,credit,Centurion,base,2.45,,,avista,cp,Amex Centurion crédito PF
+AmericanExpress,BR,base_rate,PF,credit,Delta_SkyMiles,base,1.85,,,avista,cp,Amex Delta SkyMiles crédito PF
+AmericanExpress,BR,base_rate,PJ,credit,Business_Green,base,1.80,,,avista,cp,Amex Business Green PJ
+AmericanExpress,BR,base_rate,PJ,credit,Business_Gold,base,1.95,,,avista,cp,Amex Business Gold PJ
+AmericanExpress,BR,base_rate,PJ,credit,Corporate,base,2.08,,,avista,cp,Amex Corporate PJ
+AmericanExpress,BR,merchant_adjustment,PF,credit,all,supermercados,-0.30,,,all,cp,Ajuste segmento Amex supermercados
+AmericanExpress,BR,merchant_adjustment,PF,credit,all,hoteis_aluguel_carros_turismo_joalherias_telemarketing,0.30,,,all,cp,Ajuste segmento Amex V&E
+AmericanExpress,BR,installment_adjustment,PF,credit,all,base,0.45,,,2-6,cp,Parcelado Amex 2-6x
+AmericanExpress,BR,installment_adjustment,PF,credit,all,base,1.10,,,7-12,cp,Parcelado Amex 7-12x
+AmericanExpress,BR,cnp_adjustment,PF,credit,all,base,0.50,,,all,cnp,CNP Amex padrão
+AmericanExpress,BR,cnp_authenticated_adjustment,PF,credit,all,base,0.30,,,all,cnp,Amex SafeKey autenticado
+AmericanExpress,BR,fixed_fee,ALL,cash_withdrawal,all,atm,,10.0,,na,atm,Saque ATM Amex
+AmericanExpress,BR,base_rate,ALL,prepaid,Prepaid_Standard,base,1.20,,,avista,cp,Amex pré-pago
+Elo,BR,base_rate,PF,credit,Elo,base,1.15,,,avista,cp,Elo crédito básico PF
+Elo,BR,base_rate,PF,credit,Mais,base,1.35,,,avista,cp,Elo Mais crédito PF
+Elo,BR,base_rate,PF,credit,Grafite,base,1.62,,,avista,cp,Elo Grafite crédito PF
+Elo,BR,base_rate,PF,credit,Nanquim,base,1.78,,,avista,cp,Elo Nanquim crédito PF
+Elo,BR,base_rate,PJ,credit,Elo_Empresarial,base,1.90,,,avista,cp,Elo Empresarial PJ
+Elo,BR,merchant_adjustment,PF,credit,all,supermercados,-0.25,,,all,cp,Ajuste segmento Elo supermercados
+Elo,BR,merchant_adjustment,PF,credit,all,postos_farmacias_departamento_aereas,-0.10,,,all,cp,Ajuste segmento Elo postos/farm
+Elo,BR,merchant_adjustment,PF,credit,all,hoteis_aluguel_carros_turismo_joalherias_telemarketing,0.25,,,all,cp,Ajuste segmento Elo V&E
+Elo,BR,installment_adjustment,PF,credit,all,base,0.55,,,2-6,cp,Parcelado Elo 2-6x
+Elo,BR,installment_adjustment,PF,credit,all,base,0.95,,,7-12,cp,Parcelado Elo 7-12x
+Elo,BR,contactless_adjustment,PF,credit,all,base,0.03,,,all,cp_contactless,Elo contactless
+Elo,BR,cnp_adjustment,PF,credit,all,base,0.30,,,all,cnp,CNP Elo padrão
+Elo,BR,base_rate,ALL,debit,Elo_Debito,base,0.50,,,avista,cp,Elo débito doméstico
+Elo,BR,cap,ALL,debit,Elo_Debito,base,0.50,,0.35,avista,cp,Débito Elo com teto BCB
+Elo,BR,fixed_fee,ALL,cash_withdrawal,all,atm,,7.0,,na,atm,Saque ATM Elo
+Elo,BR,base_rate,ALL,prepaid,Elo_Prepago,base,0.70,,,avista,cp,Elo pré-pago
+Hipercard,BR,base_rate,PF,credit,Hipercard_Standard,base,1.25,,,avista,cp,Hipercard Standard crédito PF
+Hipercard,BR,base_rate,PF,credit,Hipercard_Premium,base,1.45,,,avista,cp,Hipercard Premium crédito PF
+Hipercard,BR,base_rate,PJ,credit,Hipercard_PJ,base,1.80,,,avista,cp,Hipercard PJ
+Hipercard,BR,merchant_adjustment,PF,credit,all,supermercados,-0.20,,,all,cp,Ajuste Hipercard supermercados
+Hipercard,BR,installment_adjustment,PF,credit,all,base,0.50,,,2-6,cp,Parcelado Hipercard 2-6x
+Hipercard,BR,installment_adjustment,PF,credit,all,base,0.85,,,7-12,cp,Parcelado Hipercard 7-12x
+Hipercard,BR,cnp_adjustment,PF,credit,all,base,0.35,,,all,cnp,CNP Hipercard
+Hipercard,BR,base_rate,ALL,debit,Hipercard_Debito,base,0.50,,,avista,cp,Hipercard débito
+BCB_Limite,BR,regulatory_cap,ALL,debit,all,base,0.50,,0.35,avista,cp,Teto BCB débito doméstico Res.35/2020
+BCB_Limite,BR,regulatory_cap,ALL,prepaid,all,base,0.70,,,avista,cp,Teto BCB pré-pago doméstico Res.35/2020
+BCB_Limite,BR,regulatory_cap,ALL,debit,all,transporte_publico,0.50,,0.12,avista,cp,Teto BCB débito transporte público
+BCB_Limite,BR,regulatory_cap,ALL,debit,all,micro_comercios,0.50,,0.25,avista,cp,Teto BCB débito micro comércio

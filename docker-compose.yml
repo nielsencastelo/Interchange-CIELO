@@ -1,0 +1,87 @@
+services:
+
+  # ─────────────────────────────────────────────
+  # Banco de dados PostgreSQL com pgvector
+  # ─────────────────────────────────────────────
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: interchange_ai_db
+    environment:
+      POSTGRES_DB: interchange_ai
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_interchange_ai:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d   # Executa 001_schema.sql na 1ª inicialização
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d interchange_ai"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─────────────────────────────────────────────
+  # API FastAPI
+  # ─────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: interchange_ai_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/interchange_ai
+    depends_on:
+      db:
+        condition: service_healthy
+    command: uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./data:/app/data
+    profiles:
+      - full  # só sobe com: docker compose --profile full up
+
+  # ─────────────────────────────────────────────
+  # Dashboard Streamlit
+  # ─────────────────────────────────────────────
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: interchange_ai_dashboard
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@db:5432/interchange_ai
+    depends_on:
+      db:
+        condition: service_healthy
+    command: streamlit run src/dashboard.py --server.port 8501 --server.address 0.0.0.0
+    volumes:
+      - ./data:/app/data
+    profiles:
+      - full
+
+volumes:
+  postgres_interchange_ai:
+
+# ─────────────────────────────────────────────
+# Como usar:
+#
+# Apenas o banco (desenvolvimento local):
+#   docker compose up -d db
+#
+# Stack completa (API + Dashboard + DB):
+#   docker compose --profile full up -d
+#
+# Ver logs:
+#   docker compose logs -f api
+#
+# Resetar banco:
+#   docker compose down -v && docker compose up -d db
+# ─────────────────────────────────────────────
