@@ -43,14 +43,11 @@ app = FastAPI(
     title="Interchange AI API",
     description=(
         "Pipeline de IA para extração e consulta de taxas de intercâmbio "
-        "das Bandeiras (Visa, Mastercard, Amex, Elo, Hipercard) — Brasil.\n\n"
-        "**Desafio Bolsista Doutor | PUCPR Digital**"
+        "das Bandeiras (Visa, Mastercard (Opcional: Amex, Elo, Hipercard) — Brasil.\n\n"
+        "**Desafio Bolsista**"
     ),
     version="2.0.0",
-    contact={
-        "name": "Roberto Braga Jr. — NCDD",
-        "url": "https://github.com/ncdd",
-    },
+
     license_info={"name": "Acadêmico / Pesquisa"},
 )
 
