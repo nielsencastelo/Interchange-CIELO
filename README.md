@@ -414,7 +414,7 @@ ANTHROPIC_MODEL=claude-sonnet-4-20250514
 - [Visa Brazil Interchange Reimbursement Fees](https://usa.visa.com/support/consumer/visa-rules.html)
 - [Mastercard Interchange Rates & Fees](https://www.mastercard.com/gateway/solutions/payment-solutions/interchange.html)
 - [Cielo Manual de Taxas de Intercâmbio](https://developercielo.github.io/)
-- [Banco Central do Brasil — Regulamentação de Arranjos de Pagamento]([https://www.bcb.gov.br/estabilidadefinanceira/arranjos_pagamento](https://www.bcb.gov.br/estabilidadefinanceira/arranjospagamento?ano=2023])
+- [Banco Central do Brasil — Regulamentação de Arranjos de Pagamento](https://www.bcb.gov.br/estabilidadefinanceira/arranjos_pagamento](https://www.bcb.gov.br/estabilidadefinanceira/arranjospagamento?ano=2023)
 - [pdfplumber — Documentação](https://github.com/jsvine/pdfplumber)
 - [Anthropic API Documentation](https://docs.anthropic.com/)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
