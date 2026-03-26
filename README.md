@@ -412,7 +412,7 @@ ANTHROPIC_MODEL=claude-sonnet-4-20250514
 ## 📚 Referências
 
 - [Visa Brazil Interchange Reimbursement Fees](https://usa.visa.com/support/consumer/visa-rules.html)
-- [Mastercard Interchange Rates & Fees](https://www.mastercard.com/gateway/solutions/payment-solutions/interchange.html)
+- [Mastercard Interchange Rates & Fees](https://www.mastercard.com/us/en/business/support/merchant-interchange-rates.html)
 - [Cielo Manual de Taxas de Intercâmbio](https://developercielo.github.io/)
 - [Banco Central do Brasil — Regulamentação de Arranjos de Pagamento](https://www.bcb.gov.br/estabilidadefinanceira/arranjospagamento?ano=2023)
 - [pdfplumber — Documentação](https://github.com/jsvine/pdfplumber)
